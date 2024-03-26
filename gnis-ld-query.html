@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>GNIS-LD Query</title>
+<style>
+tr:nth-child(even) {
+  background-color: #D6EEEE;
+}
+</style>
+</head>
+<body>
+<h1>GNIS-LD Query</h1>
+<p>This page queries the <a href="https://gnis-ld.org/">GNIS Linked Data</a> database using SPARQL to get results. You can search for current GNIS records on the <a href="https://edits.nationalmap.gov/apps/gaz-domestic/public/search/names">USGS GNIS web site</a> but GNIS-LD has both archived and current GNIS records so you can search both data sets at once. If you're not familiar with SPARQL, it can be difficult to use. This page makes the query process easier.</p>
+<p>Simply put your search terms in the form fields below and press the Search button. By default, the search terms are CASE SENSITIVE and require EXACT MATCHES to find records. However, if you prefix the Feature Name field with a tilde (~), you may use regular expressions in this field. Queries with regular expressions take longer, so be patient after pressing the Search button.
+<table id="table">
+<tr>
+<form id="form">
+<td><input type="number" name="featureId">
+<td><input type="text" name="officialName">
+<td><select name="featureClass">
+<option/>
+<option value="usgs:Airport">Airport</option>
+<option value="usgs:Arch">Arch</option>
+<option value="usgs:Area">Area</option>
+<option value="usgs:Arroyo">Arroyo</option>
+<option value="usgs:Bar">Bar</option>
+<option value="usgs:Basin">Basin</option>
+<option value="usgs:Bay">Bay</option>
+<option value="usgs:Beach">Beach</option>
+<option value="usgs:Bench">Bench</option>
+<option value="usgs:Bend">Bend</option>
+<option value="usgs:Bridge">Bridge</option>
+<option value="usgs:Building">Building</option>
+<option value="usgs:Canal">Canal</option>
+<option value="usgs:Cape">Cape</option>
+<option value="usgs:Cemetery">Cemetery</option>
+<option value="usgs:Census">Census</option>
+<option value="usgs:Channel">Channel</option>
+<option value="usgs:Church">Church</option>
+<option value="usgs:CivilGovernment">Civil</option>
+<option value="usgs:Cliff">Cliff</option>
+<option value="usgs:Crater">Crater</option>
+<option value="usgs:Crossing">Crossing</option>
+<option value="usgs:Dam">Dam</option>
+<option value="usgs:Waterfall">Falls</option>
+<option value="usgs:Flat">Flat</option>
+<option value="usgs:Forest">Forest</option>
+<option value="usgs:Gap">Gap</option>
+<option value="usgs:Glacier">Glacier</option>
+<option value="usgs:Gut">Gut</option>
+<option value="usgs:Harbor">Harbor</option>
+<option value="usgs:Hospital">Hospital</option>
+<option value="usgs:Island">Island</option>
+<option value="usgs:Isthmus">Isthmus</option>
+<option value="usgs:Lake">Lake</option>
+<option value="usgs:Lava">Lava</option>
+<option value="usgs:Levee">Levee</option>
+<option value="usgs:Locale">Locale</option>
+<option value="usgs:Military">Military</option>
+<option value="usgs:Mine">Mine</option>
+<option value="usgs:OilField">Oilfield</option>
+<option value="usgs:Park">Park</option>
+<option value="usgs:Rock">Pillar</option>
+<option value="usgs:Plain">Plain</option>
+<option value="usgs:PopulatedPlace">Populated Place</option>
+<option value="usgs:PostOffice">Post Office</option>
+<option value="usgs:MountainRange">Range</option>
+<option value="usgs:Rapids">Rapids</option>
+<option value="usgs:Reserve">Reserve</option>
+<option value="usgs:Reservoir">Reservoir</option>
+<option value="usgs:Ridge">Ridge</option>
+<option value="usgs:School">School</option>
+<option value="usgs:Sea">Sea</option>
+<option value="usgs:Slope">Slope</option>
+<option value="usgs:Spring">Spring</option>
+<option value="usgs:Stream">Stream</option>
+<option value="usgs:Summit">Summit</option>
+<option value="usgs:Swamp">Swamp</option>
+<option value="usgs:Tower">Tower</option>
+<option value="usgs:Trail">Trail</option>
+<option value="usgs:Tunnel">Tunnel</option>
+<option value="usgs:Unknown">Unknown</option>
+<option value="usgs:Valley">Valley</option>
+<option value="usgs:Well">Well</option>
+<option value="usgs:Woodland">Woods</option>
+</select>
+<td><select name="state">
+<option/>
+<option>Alabama</option>
+<option>Alaska</option>
+<option>American Samoa</option>
+<option>Arizona</option>
+<option>Arkansas</option>
+<option>California</option>
+<option>Colorado</option>
+<option>Commonwealth of the Northern Mariana Islands</option>
+<option>Connecticut</option>
+<option>Delaware</option>
+<option>District of Columbia</option>
+<option>Federated States of Micronesia</option>
+<option>Florida</option>
+<option>Georgia</option>
+<option>Guam</option>
+<option>Hawaii</option>
+<option>Idaho</option>
+<option>Illinois</option>
+<option>Indiana</option>
+<option>Iowa</option>
+<option>Kansas</option>
+<option>Kentucky</option>
+<option>Louisiana</option>
+<option>Maine</option>
+<option>Marshall Islands</option>
+<option>Maryland</option>
+<option>Massachusetts</option>
+<option>Michigan</option>
+<option>Minnesota</option>
+<option>Mississippi</option>
+<option>Missouri</option>
+<option>Montana</option>
+<option>Nebraska</option>
+<option>Nevada</option>
+<option>New Hampshire</option>
+<option>New Jersey</option>
+<option>New Mexico</option>
+<option>New York</option>
+<option>North Carolina</option>
+<option>North Dakota</option>
+<option>Ohio</option>
+<option>Oklahoma</option>
+<option>Oregon</option>
+<option>Pennsylvania</option>
+<option>Puerto Rico</option>
+<option>Republic of Palau</option>
+<option>Rhode Island</option>
+<option>South Carolina</option>
+<option>South Dakota</option>
+<option>Tennessee</option>
+<option>Texas</option>
+<option>U.S. Minor Outlying Islands</option>
+<option>Utah</option>
+<option>Vermont</option>
+<option>Virgin Islands</option>
+<option>Virginia</option>
+<option>Washington</option>
+<option>West Virginia</option>
+<option>Wisconsin</option>
+<option>Wyoming</option>
+</select>
+<td><input type="text" name="county">
+<td><input type="submit" value="Search" id="search">
+</form>
+<tr>
+<th>Feature ID
+<th>Feature Name
+<th>Feature Class
+<th>State
+<th>County
+</table>
+<script>
+
+const form = document.querySelector("form");
+console.log(form);
+
+const table = document.querySelector("table");
+console.log(table);
+
+function resetTable() {
+  while (table.rows.length > 2) {
+    table.deleteRow(-1);
+  }
+}
+
+var queryStatements = "";
+var queryOffset = 0;
+
+async function sendData() {
+  // Associate the FormData object with the form element
+  const formData = new FormData(form);
+
+  resetTable();
+  
+  queryStatements = "";
+  queryOffset = 0;
+
+  try {
+    console.log(formData);
+
+    // Display the key/value pairs
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    if (formData.has("featureId") && formData.get("featureId") != "") {
+      const featureId = formData.get("featureId");
+      queryStatements += `  ?feature gnis:featureId "${featureId}" .\n`;
+    }
+    
+    if (formData.has("officialName") && formData.get("officialName") != "") {
+      var officialName = formData.get("officialName");
+      if (officialName.startsWith('~')) {
+        officialName = officialName.substring(1);
+        queryStatements += `  FILTER regex(?name, "${officialName}")\n`
+      }
+      else {
+      queryStatements += `  ?feature gnis:officialName "${officialName}"@en .\n`;
+      }
+    }
+    
+    if (formData.has("featureClass") && formData.get("featureClass") != "") {
+      const featureClass = formData.get("featureClass");
+      queryStatements += `  ?feature rdf:type ${featureClass} .\n`;
+    }
+    
+    if (formData.has("state") && formData.get("state") != "") {
+      const state = formData.get("state");
+      queryStatements += `  ?state gnis:stateName "${state}"@en .\n`;
+    }
+    
+    if (formData.has("county") && formData.get("county") != "") {
+      const county = formData.get("county");
+      queryStatements += `  ?county gnis:countyName "${county}"@en .\n`;
+    }
+    
+    console.log(queryStatements);
+    
+    loadMoreData();
+  } catch (e) {
+    console.debug(e);
+  }
+}
+
+async function loadMoreData() {
+
+  try {
+    const query = `
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX gnis: <http://gnis-ld.org/lod/gnis/ontology/>
+PREFIX usgs: <http://gnis-ld.org/lod/usgs/ontology/>
+
+SELECT ?id ?name ?class ?stateName ?countyName ?feature
+WHERE {
+  ?feature gnis:featureId ?id ;
+           gnis:officialName ?name ;
+           rdf:type ?class ;
+           gnis:county ?countyAlias .
+  ?countyAlias owl:sameAs ?county .
+  ?county gnis:countyName ?countyName ;
+          gnis:state ?stateAlias .
+  ?stateAlias owl:sameAs ?state .
+  ?state gnis:stateName ?stateName .
+
+${queryStatements}
+}
+ORDER BY xsd:integer(?id)
+LIMIT 100
+OFFSET ${queryOffset}
+`;
+
+	console.log(query);
+
+    const sparqlHeaders = new Headers();
+    sparqlHeaders.set("Accept", "application/json");
+    sparqlHeaders.set("Content-Type", "application/sparql-query");
+
+    const request = new Request("https://gnis-ld.org/sparql", {
+      method: "POST",
+      headers: { "Accept": "application/json",
+                 "Content-Type": "application/sparql-query"},
+      body: query,
+    });
+
+    const response = await fetch(request);
+
+	const bindings = (await response.json()).results.bindings;
+	
+	console.log(bindings);
+	
+	if (queryOffset > 0) {
+		table.deleteRow(-1);
+	}
+	
+	bindings.forEach((binding) => {
+	  var row = table.insertRow(-1);
+	  row.insertCell(0).innerHTML = binding.id.value;
+	  row.insertCell(1).innerHTML = binding.name.value;
+	  row.insertCell(2).innerHTML = binding.class.value.substring(37);
+	  row.insertCell(3).innerHTML = binding.stateName.value;
+	  row.insertCell(4).innerHTML = binding.countyName.value;
+	  row.insertCell(5).innerHTML = `<a href="${binding.feature.value}">gnis-ld</a> <a href="https://edits.nationalmap.gov/apps/gaz-domestic/public/summary/${binding.id.value}">gnis</a>`;
+	});
+    
+    queryOffset += bindings.length;
+    console.log(queryOffset);
+    
+    if (bindings.length == 100) {
+      addDynamicLoadingRow();
+    }
+    
+  } catch (e) {
+    console.debug(e);
+  }
+}
+
+async function addDynamicLoadingRow() {
+	var row = table.insertRow(-1);
+	var cell = row.insertCell(0);
+	cell.innerHTML = "Loading more data ...";
+	cell.colSpan = 5;
+
+    new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.intersectionRatio > 0) {
+          loadMoreData();
+          observer.disconnect();
+        }
+  	  });
+    }).observe(cell);
+}
+
+// Take over form submission
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  sendData();
+});
+</script>
+</body>
+</html>
